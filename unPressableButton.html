@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital@1&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .button {
+            width: 150px;
+            height: 50px;
+            border-width: 5px;
+            border-style: solid;
+            border-image: linear-gradient(to right, #6dd5ed, #2193b0) 1;
+            background: linear-gradient(to left,#6dd5ed 5%, #2193b0);
+            color: white;
+            font-size: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Raleway', sans-serif;
+            flex-wrap: wrap;
+            padding: 1em;
+            
+        }
+
+
+        
+
+        .absolute {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+
+        .clicked {
+            background: linear-gradient(to right,#de6262, #ffb88c);
+            border-image: linear-gradient(to left, #de6262, #ffb88c) 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="button" >Press for $1,000,000</div class="button">
+<script>
+button = document.querySelector('.button');
+button.addEventListener('click', (e) => {
+    console.log(e);
+    button.classList.toggle('clicked');
+})
+
+    
+// button.addEventListener('mouseenter', (e) => {
+//     console.log(e.offsetX)
+//     console.log(e.offsetY)
+//     leftright = button.getBoundingClientRect().left;
+//     updown = button.getBoundingClientRect().top;
+
+//     console.log(`Left Edge ${button.getBoundingClientRect().left}`)
+//     console.log(`Right Edge ${button.getBoundingClientRect().right}`)
+//     console.log(`Bottom Edge ${button.getBoundingClientRect().bottom}`)
+//     console.log(`Top Edge ${button.getBoundingClientRect().top}`)
+
+//     button.style.position = 'absolute';
+//     switch(true){
+//         case (e.offsetX < 0):
+//             console.log('Mouse entered on the left')
+//             button.style.left = `${leftright+40}px`;
+//             break;
+//         case (e.offsetX > 185):
+//             console.log('Mouse entered on the right')
+//             button.style.left = `${leftright-40}px`;
+//             break;
+//         case (e.offsetY > 85):
+//             console.log('Mouse entered on the bottom')
+//             button.style.top = `${updown-40}px`;
+//             break;
+//         case (e.offsetY < 0):
+//             console.log('Mouse entered on the top')
+//             button.style.top = `${updown+40}px`;
+//             break;
+//     }
+// })
+
+window.addEventListener('mousemove', (e) => {
+    
+    console.log(e);
+    console.log(window.innerWidth);
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    let distanceFromEdge = windowWidth-e.offsetX;
+    let distanceFromTop = windowHeight - e.offsetY;
+    console.log(`Offset X is : ${e.offsetX}`);
+    console.log(`Offset Y is : ${e.offsetY}`);
+    console.log('Window width is ' + windowWidth);
+    console.log('Window height is '  + windowHeight);
+    console.log('Distance from edge is ' + distanceFromEdge)
+    console.log(`Distance from top is ` + distanceFromTop)
+    button.style.position = 'absolute';
+    button.style.left = `${distanceFromEdge}px`
+    button.style.top = `${e.offsetY+50}px`
+})
+</script>
+</body>
+</html>
